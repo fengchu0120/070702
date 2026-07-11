@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新生作品集 2025–2026 // Dark Organic Collage Exhibition</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.imglt.com/20260711/889efae22b50ae3ce00f58a5db285e1c.jpg');
+            background-color: #2b3b2c;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #FFFFFF; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-weight: 600; 
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 默认电脑端显示自定义鼠标，手机端自动隐藏 */
+        @media (min-width: 769px) {
+            body, html { cursor: none; }
+            a, button, [role="button"], .zoom-hint, .stack-photo { cursor: none !important; }
+            .custom-cursor-dot {
+                width: 8px;
+                height: 8px;
+                background-color: #52B759; 
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .custom-cursor-follower {
+                width: 32px;
+                height: 32px;
+                border: 2px solid #7ED984; 
+                background-color: rgba(126, 217, 132, 0.08);
+                position: fixed;
+                pointer-events: none;
+                z-index: 9998;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .custom-cursor-dot, .custom-cursor-follower { display: none !important; }
+        }
+
+        /* 强化字体样式 */
+        .font-serif {
+            font-family: "Playfair Display", "Times New Roman", Georgia, serif;
+            font-weight: 700;
+        }
+        .font-sans-clean {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* --- 互动拼贴元素样式 --- */
+        .interactive-sticker {
+            position: absolute;
+            pointer-events: none;
+            z-index: 2;
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5));
+        }
+        .interactive-sticker img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .st-1 { left: 4%; top: 250px; width: 180px; transform: rotate(-8deg); }
+        .st-2 { right: 6%; top: 950px; width: 220px; transform: rotate(6deg); }
+        .st-3 { left: 2%; top: 1900px; width: 170px; transform: rotate(-12deg); }
+        .st-4 { right: 4%; top: 3150px; width: 200px; transform: rotate(5deg); }
+        .st-5 { left: 5%; top: 4400px; width: 190px; transform: rotate(10deg); }
+        .st-6 { right: 8%; top: 5600px; width: 160px; transform: rotate(-6deg); }
+        .st-7 { left: 8%; bottom: 350px; width: 210px; transform: rotate(14deg); }
+
+        /* 手机端缩小拼贴贴纸，防止挡住文字 */
+        @media (max-width: 768px) {
+            .interactive-sticker { width: 90px !important; opacity: 0.6; }
+            .st-1 { top: 320px; }
+            .st-2 { top: 1100px; }
+            .st-3 { top: 2200px; }
+        }
+
+        /* --- 复古白底相框 --- */
+        .border-frame {
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            padding: 14px;
+            background: #FFFFFF;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artwork-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background-color: #FFFFFF;
+            transition: transform 0.5s ease;
+        }
+        .border-frame:hover .artwork-img {
+            transform: scale(1.03);
+        }
+
+        /* 双击放大小图标提示 */
+        .zoom-hint {
+            position: absolute;
+            bottom: 22px;
+            right: 22px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #FFFFFF;
+            padding: 5px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+            pointer-events: auto;
+            font-family: sans-serif;
+        }
+
+        section {
+            padding: 120px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #C2DEC9; 
+            font-weight: 700;
+            margin-bottom: 50px;
+            display: block;
+            letter-spacing: 0.2em;
+        }
+        @media (max-width: 768px) {
+            .section-label { margin-bottom: 30px; }
+        }
+
+        .lang-en {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #C2DEC9;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 700;
+        }
+
+        /* --- 核心响应式现代网格流布局（抛弃表格，完美适配手机） --- */
+        .responsive-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            gap: 40px;
+        }
+        .grid-cell-50 { width: calc(50% - 20px); }
+        .grid-cell-65 { width: calc(65% - 20px); }
+        .grid-cell-35 { width: calc(35% - 20px); }
+        .grid-cell-55 { width: calc(55% - 20px); }
+        .grid-cell-45 { width: calc(45% - 20px); }
+        .grid-cell-40 { width: calc(40% - 20px); }
+        .grid-cell-60 { width: calc(60% - 20px); }
+
+        .editorial-three-col {
+            display: flex;
+            width: 100%;
+            gap: 16px;
+        }
+        .col-3 { width: 33.333%; }
+
+        /* 手机端一律强制转为全宽竖屏堆叠 */
+        @media (max-width: 768px) {
+            .responsive-grid, .editorial-three-col {
+                flex-direction: column !important;
+                gap: 30px !important;
+            }
+            .grid-cell-50, .grid-cell-65, .grid-cell-35, .grid-cell-55, .grid-cell-45, .grid-cell-40, .grid-cell-60, .col-3 {
+                width: 100% !important;
+                padding: 0 !important;
+            }
+            .hero-right-cell { padding-top: 0 !important; }
+        }
+
+        /* --- 多图卡片叠放容器 --- */
+        .multi-stack-container {
+            position: relative;
+            width: 100%;
+            height: 440px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .multi-stack-container { height: 340px; }
+        }
+
+        .stack-photo {
+            position: absolute;
+            width: 85%;
+            height: 92%;
+            left: 7.5%;
+            top: 4%;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.5s, opacity 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            user-select: none;
+        }
+
+        /* 初始层叠错开样式 */
+        .stack-photo[data-index="0"] { transform: rotate(-3deg); z-index: 10; }
+        .stack-photo[data-index="1"] { transform: rotate(4deg) translate(6px, 6px); z-index: 9; }
+        .stack-photo[data-index="2"] { transform: rotate(-2deg) translate(-8px, 10px); z-index: 8; }
+        .stack-photo[data-index="3"] { transform: rotate(3deg) translate(12px, -4px); z-index: 7; }
+        .stack-photo[data-index="4"] { transform: rotate(-4deg) translate(-4px, -8px); z-index: 6; }
+        .stack-photo[data-index="5"] { transform: rotate(2deg) translate(8px, 12px); z-index: 5; }
+        .stack-photo[data-index]:nth-child(n+7) { transform: rotate(0deg); z-index: 1; opacity: 0.5; }
+
+        /* 仅在电脑端鼠标悬停时预览扩散 */
+        @media (min-width: 769px) {
+            .multi-stack-container:hover .stack-photo[data-index="0"] { transform: rotate(-1deg) translate(-25px, -10px); }
+            .multi-stack-container:hover .stack-photo[data-index="1"] { transform: rotate(2deg) translate(25px, -5px); }
+            .multi-stack-container:hover .stack-photo[data-index="2"] { transform: rotate(-3deg) translate(-15px, 20px); }
+            .multi-stack-container:hover .stack-photo[data-index="3"] { transform: rotate(3deg) translate(20px, 15px); }
+            .multi-stack-container:hover .stack-photo[data-index="4"] { transform: rotate(-2deg) translate(0px, -20px); }
+        }
+
+        /* 切牌滑出动画样式 */
+        .stack-photo.slide-out {
+            transform: translate(120%, 20%) rotate(25deg) !important;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        .epilogue-statement { font-size: clamp(1.5rem, 3.8vw, 3rem); line-height: 1.5; font-weight: 600; color: #FFFFFF; margin-bottom: 40px; }
+        .accent-text { color: #C2DEC9; font-style: italic; text-decoration: underline; text-underline-offset: 6px; }
+
+        /* --- 灯箱全屏放大层 --- */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 18, 12, 0.94);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border: 2px solid rgba(255,255,255,0.2);
+            background: #FFFFFF;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lightbox-overlay.active .lightbox-img {
+            transform: scale(1);
+        }
+        .lightbox-close-tip {
+            position: absolute;
+            bottom: 30px;
+            color: #C2DEC9;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        /* 手机端导航栏优化 */
+        @media (max-width: 768px) {
+            header .container-custom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            header nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px 20px !important;
+            }
+            .artwork-img { height: 280px !important; }
+            .hero-left-img { height: 380px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 自定义绿色鼠标（只在电脑端加载） -->
+    <div class="custom-cursor-dot" id="cursorDot"></div>
+    <div class="custom-cursor-follower" id="cursorFollower"></div>
+
+    <!-- 全屏图片放大灯箱 -->
+    <div class="lightbox-overlay" id="lightbox">
+        <img src="" alt="Zoomed View" class="lightbox-img" id="lightboxImg">
+        <div class="lightbox-close-tip font-serif">// 双击或点击任意空白处退出查看 //</div>
+    </div>
+
+    <!-- 互动贴纸层 -->
+    <div class="interactive-sticker st-1" data-speed="2.5"><img src="https://i.imglt.com/20260711/cee9da7d4c992d8c271ea0638bbe775b.png"></div>
+    <div class="interactive-sticker st-2" data-speed="-3"><img src="https://i.imglt.com/20260711/052f79b9b8a3f32f6a7f7fe23aa4a412.png"></div>
+    <div class="interactive-sticker st-3" data-speed="4"><img src="https://i.imglt.com/20260711/147d29f20aedc0b09e00e06fc632798b.png"></div>
+    <div class="interactive-sticker st-4" data-speed="-2"><img src="https://i.imglt.com/20260711/118ecf6933a30f918899b47c96ccc1c0.png"></div>
+    <div class="interactive-sticker st-5" data-speed="3.5"><img src="https://i.imglt.com/20260711/15ba5096cb9dc329b4e4ddf858c96a54.png"></div>
+    <div class="interactive-sticker st-6" data-speed="-4"><img src="https://i.imglt.com/20260711/76e0ddf5de51463f79975e02d324b046.png"></div>
+    <div class="interactive-sticker st-7" data-speed="2"><img src="https://i.imglt.com/20260711/9363982f18790469f8d372fae966770d.png"></div>
+
+    <!-- HEADER -->
+    <header style="padding: 30px 0; border-bottom: 2px solid rgba(255, 255, 255, 0.15); position: relative; z-index: 10;">
+        <div class="container-custom" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="font-serif" style="font-size: 13px; letter-spacing: 0.25em;">PORTFOLIO ARCHIVE // ECO-ART</div>
+            <nav class="font-sans-clean" style="display: flex; gap: 30px; font-size: 12px;">
+                <a href="#projects" style="color: #fff; text-decoration: none;">01 / PROJECTS 海报</a>
+                <a href="#courses" style="color: #fff; text-decoration: none;">02 / COURSES 实践</a>
+                <a href="#exploration" style="color: #fff; text-decoration: none;">03 / 3D 三维</a>
+                <a href="#practice" style="color: #fff; text-decoration: none;">04 / PRACTICE 课堂外</a>
+                <a href="#about" style="color: #fff; text-decoration: none;">05 / EPILOGUE 觉醒</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 01 / HERO -->
+    <section>
+        <div class="container-custom">
+            <span class="section-label font-serif">INDEX // SELECTED WORKS</span>
+            <h1 class="font-serif" style="font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1.2; margin-bottom: 30px;">
+                新生作品集 2025–2026<br><strong style="font-weight: 800; color: #C2DEC9;">ORGANIC COLLAGE</strong>
+            </h1>
+            <div class="font-sans-clean" style="font-size: 14px; line-height: 2; color: #FFFFFF; max-width: 650px;">
+                <p style="margin-bottom: 8px;">进入数字媒体艺术专业后的第一年，将手作艺术的无序拼接与数媒视觉完美调和。以下为大一年度核心设计留存。</p>
+            </div>
+            
+            <div class="responsive-grid" style="margin-top: 60px;">
+                <div class="grid-cell-55">
+                    <div class="border-frame">
+                        <img src="https://i.imglt.com/20260711/f4dcda878318995ae95e0be57f5a8981.jpg" class="artwork-img hero-left-img" style="height: 520px;" alt="首页作品一">
+                        <div class="zoom-hint">🔍 双击放大</div>
+                    </div>
+                </div>
+                <div class="grid-cell-45 hero-right-cell" style="padding-top: 80px;">
+                    <div class="border-frame">
+                        <img src="https://i.imglt.com/20260711/920ec94c600d8b803c7a0e20aa1de048.jpg" class="artwork-img" style="height: 380px;" alt="首页作品二">
+                        <div class="zoom-hint">🔍 双击放大</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 / CAMPUS PROJECTS -->
+    <section id="projects">
+        <div class="container-custom">
+            <span class="section-label font-serif">01 / Campus Projects 校园项目海报系列</span>
+            
+            <!-- 定向越野 -->
+            <div class="responsive-grid" style="margin-bottom: 80px;">
+                <div class="grid-cell-50">
+                    <div class="border-frame" style="margin-bottom: 24px;">
+                        <img src="https://s41.ax1x.com/2026/07/09/pmrmBZR.png" class="artwork-img" style="height: 360px;">
+                        <div class="zoom-hint">🔍 双击放大</div>
+                    </div>
+                    <div class="border-frame">
+                        <img src="https://i.imglt.com/20260709/2a15cd6f4e808adbfdb5c470b45ee03b.png" class="artwork-img" style="height: 280px;">
+                        <div class="zoom-hint">🔍 双击放大</div>
+                    </div>
+                </div>
+                <div class="grid-cell-50" style="padding-top: 30px;">
+                    <span class="lang-en font-serif">CASE STUDY 01 // DIRECTIONAL</span>
+                    <h3 class="font-serif" style="font-size: 24px; margin: 0 0 15px 0;">学生会宣传部 · 定向越野视觉系统</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        打破传统海报模式，将其视作一套完整的落地导视系统进行设计，使二维视觉与实地环境产生交互。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 校园歌手大赛 -->
+            <div class="responsive-grid" style="margin-bottom: 80px;">
+                <div class="grid-cell-65">
+                    <div class="editorial-three-col">
+                        <div class="col-3">
+                            <div class="border-frame">
+                                <img src="https://i.imglt.com/20260709/8fec298a0dcde120ba0ee160b487157e.png" class="artwork-img" style="height: 340px;">
+                                <div class="zoom-hint">🔍</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="border-frame">
+                                <img src="https://i.imglt.com/20260709/ff44bfda56f3459382d05153c3cd8d24.png" class="artwork-img" style="height: 340px;">
+                                <div class="zoom-hint">🔍</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="border-frame">
+                                <img src="https://i.imglt.com/20260709/8d70acd0a86c6641c21eb6ecc1d4a371.png" class="artwork-img" style="height: 340px;">
+                                <div class="zoom-hint">🔍</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-cell-35" style="padding-top: 20px;">
+                    <span class="lang-en font-serif">CASE STUDY 02 // MUSIC FESTIVAL</span>
+                    <h3 class="font-serif" style="font-size: 24px; margin: 0 0 15px 0;">校园歌手大赛 · 概念视觉三联画</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        通过三位一体的排版逻辑与不同的色彩情绪演变，传达音乐现场的多元与张力。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 辩论赛 -->
+            <div class="responsive-grid">
+                <div class="grid-cell-35" style="padding-top: 50px;">
+                    <span class="lang-en font-serif">CASE STUDY 03 // DEBATE</span>
+                    <h3 class="font-serif" style="font-size: 24px; margin: 0 0 15px 0;">思想碰撞 · 校园辩论赛主视觉</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        通过对立元素的解构与强烈文本的交织，凸显辩论赛场上逻辑针锋相对的思辨张力。
+                    </p>
+                </div>
+                <div class="grid-cell-60">
+                    <div class="border-frame">
+                        <img src="https://i.imglt.com/20260709/f93d0a6d5a89eb1a192185607dddfc59.jpg" class="artwork-img" style="height: 400px;">
+                        <div class="zoom-hint">🔍 双击放大</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 03 / COURSE WORKS -->
+    <section id="courses">
+        <div class="container-custom">
+            <span class="section-label font-serif">02 / Course Works 课程实践（💡 手机端轻触卡片可流畅切牌）</span>
+            
+            <div class="responsive-grid">
+                <!-- 名画解构 -->
+                <div class="grid-cell-35" style="width: 31.33%">
+                    <div class="multi-stack-container">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260711/8bb7ab37e20490ffbae00d1621bf3e20.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/750c0f34affced265209aa724f382ceb.png" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="2"><img src="https://i.imglt.com/20260709/01c3d962e900f22845703732a73db494.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="3"><img src="https://i.imglt.com/20260709/3f414fae9bbc28bc9376d8cb7a808f66.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="4"><img src="https://i.imglt.com/20260711/5da727eb1adfdcba8583050542d6565b.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="5"><img src="https://i.imglt.com/20260711/c0fab7d13ff4808d9a1524e6988ce933.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                    </div>
+                    <h4 class="font-serif" style="font-size: 17px; margin: 15px 0 4px 0;">名画解构 (6张)</h4>
+                    <span class="lang-en font-serif">Masterpiece Deconstruction</span>
+                </div>
+                
+                <!-- 舞台设计 -->
+                <div class="grid-cell-35" style="width: 31.33%">
+                    <div class="multi-stack-container">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/173a6079b0e3f84df9798497dc3cb3bb.png" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/f1af463c1d65041f1054f45db2598ce8.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                    </div>
+                    <h4 class="font-serif" style="font-size: 17px; margin: 15px 0 4px 0;">舞台设计 (2张)</h4>
+                    <span class="lang-en font-serif">Scenography Design</span>
+                </div>
+
+                <!-- 数字与体验 -->
+                <div class="grid-cell-35" style="width: 31.33%">
+                    <div class="multi-stack-container">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/43a14aac143959e8ec7046ab9feab8cc.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/6d24d9982e39b637e1aea7fcdc96022f.jpg" class="artwork-img"><div class="zoom-hint">🔍</div></div>
+                    </div>
+                    <h4 class="font-serif" style="font-size: 17px; margin: 15px 0 4px 0;">数字与体验 (2张)</h4>
+                    <span class="lang-en font-serif">Digital & Experience</span>
+                </div>
+            </div>
+
+            <!-- 空间与场域 -->
+            <div class="responsive-grid" style="margin-top: 60px;">
+                <div class="grid-cell-50">
+                    <div class="multi-stack-container" style="height: 440px;">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/19d152386982444c406ea630fd635c1d.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/d950c5cb4a1e7619c42c361b547cc896.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="2"><img src="https://i.imglt.com/20260709/a05dfff4c892e8e0ca40f5ea0ae1782d.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="3"><img src="https://i.imglt.com/20260709/c55d3998c11e13f56332a75faebc81ed.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="4"><img src="https://i.imglt.com/20260709/26e9e949b9ebbee889cebeba5c8584e6.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="5"><img src="https://i.imglt.com/20260709/32d5621419e02cdb8d15d2ac133f199c.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="6"><img src="https://i.imglt.com/20260709/67821f09db7465c41ccb6cb5c7635c97.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="7"><img src="https://i.imglt.com/20260709/6a7c474f2d92f85f3cb0acce5fff0c26.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="8"><img src="https://i.imglt.com/20260709/0c64f921813b4bf791b94ab038945ca7.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="9"><img src="https://i.imglt.com/20260709/c788bf61fd868cef054e9796924abe0f.jpg" class="artwork-img"></div>
+                    </div>
+                </div>
+                <div class="grid-cell-50" style="padding-top: 40px;">
+                    <span class="lang-en font-serif">SPATIAL SCENARIOS // 10 IMAGES ARCHIVE</span>
+                    <h3 class="font-serif" style="font-size: 24px; margin: 0 0 15px 0;">空间与场域 (10张)</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        关于实体装置、环境包裹与数字灯光媒介的结合尝试。轻触卡片可连续切牌，双击看全高清大图。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 方法与实践 -->
+            <div class="responsive-grid" style="margin-top: 60px;">
+                <div class="grid-cell-45" style="padding-top: 30px;">
+                    <span class="lang-en font-serif">METHODOLOGY // 4 IMAGES</span>
+                    <h3 class="font-serif" style="font-size: 24px; margin: 0 0 15px 0;">方法与实践 (4张)</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        跨学科艺术调研及全流程的设计落地执行档案。
+                    </p>
+                </div>
+                <div class="grid-cell-55">
+                    <div class="multi-stack-container">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/1d2db8887e5a5a2f84515a52017f002b.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/5bec2fcb79e85be3f85ebf2843cfc114.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="2"><img src="https://i.imglt.com/20260709/6a7c474f2d92f85f3cb0acce5fff0c26.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="3"><img src="https://i.imglt.com/20260709/c788bf61fd868cef054e9796924abe0f.jpg" class="artwork-img"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 04 / 3D EXPLORATION -->
+    <section id="exploration">
+        <div class="container-custom">
+            <span class="section-label font-serif">03 / 3D Exploration 三维建模尝试</span>
+            <div class="responsive-grid">
+                <div class="grid-cell-40" style="padding-top: 20px;">
+                    <p class="font-serif" style="font-size: 18px; line-height: 1.8;">
+                        “从二维平面慢慢迈向三维多维空间，探索不同媒介厚度下数字艺术的无限表达可能。”
+                    </p>
+                </div>
+                <div class="grid-cell-60">
+                    <div class="multi-stack-container" style="height: 420px;">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/738ec4df9caea1a1ddb129658015dfe4.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/92f62fdfeab0ae14d56bb085d0d13590.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="2"><img src="https://i.imglt.com/20260709/8ab856b43799cbd74fad8b2b574f42f7.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="3"><img src="https://i.imglt.com/20260711/b84eca79330d794dc54234cd3c4093c4.jpg" class="artwork-img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 / PRACTICE -->
+    <section id="practice">
+        <div class="container-custom">
+            <span class="section-label font-serif">04 / Practice 课堂之外的个人练习</span>
+            
+            <!-- 板绘练习 -->
+            <div class="responsive-grid" style="margin-bottom: 60px;">
+                <div class="grid-cell-60">
+                    <div class="multi-stack-container" style="height: 450px;">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/0789891bf80d8323b647de6791b1f0f0.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/b7ef0bdd59e2105022e0b094af2dda5d.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="2"><img src="https://i.imglt.com/20260709/5bec2fcb79e85be3f85ebf2843cfc114.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="3"><img src="https://i.imglt.com/20260709/1d2db8887e5a5a2f84515a52017f002b.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="4"><img src="https://i.imglt.com/20260709/f8897396b6152d3328d236168009ed09.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="5"><img src="https://i.imglt.com/20260709/84d0b62cadbf35297dcfe85c23e20cb7.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="6"><img src="https://i.imglt.com/20260709/301995bf9a1bcf04bcbd340d7e62fdb9.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="7"><img src="https://i.imglt.com/20260709/4c90276a08da690d8348426cb164a015.png" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="8"><img src="https://i.imglt.com/20260709/7d6ac420bce6c119f2dbea4344a36425.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="9"><img src="https://i.imglt.com/20260709/e47035c6fbf2ec8ff3cf0fcbca47fe01.jpg" class="artwork-img"></div>
+                    </div>
+                </div>
+                <div class="grid-cell-40" style="padding-top: 40px;">
+                    <span class="lang-en font-serif">DIGITAL SKETCHING // 10 IMAGES</span>
+                    <h3 class="font-serif" style="font-size: 22px; margin: 0 0 15px 0;">数位板绘日常随笔练习 (10张)</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        手感与日常脑洞的捕捉。记录大一高强度学业之余的CG原画与概念草图沉淀。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 手绘海娜 -->
+            <div class="responsive-grid">
+                <div class="grid-cell-40" style="padding-top: 40px;">
+                    <span class="lang-en font-serif">COMMUNITY PRACTICE // HENNA</span>
+                    <h3 class="font-serif" style="font-size: 22px; margin: 0 0 15px 0;">线下集市摆摊与手绘海娜 (5张)</h3>
+                    <p class="font-sans-clean" style="font-size: 14px; line-height: 1.8;">
+                        让创作走下屏幕。在每一次独一无二的海娜手绘定制中，触碰并感受生活真实的温度。
+                    </p>
+                </div>
+                <div class="grid-cell-60">
+                    <div class="multi-stack-container">
+                        <div class="border-frame stack-photo" data-index="0"><img src="https://i.imglt.com/20260709/8b15c61bcacf5fc47be82836208bdc13.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="1"><img src="https://i.imglt.com/20260709/9a502efa7e7194b02cf0374202ca9863.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="2"><img src="https://i.imglt.com/20260709/eb289fdb554fd210751ae4ea9d4fbe03.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="3"><img src="https://i.imglt.com/20260709/4677ae7800efb8c6888d8244eea4ebc8.jpg" class="artwork-img"></div>
+                        <div class="border-frame stack-photo" data-index="4"><img src="https://i.imglt.com/20260709/9f82091517dce9c781365290ddca492c.jpg" class="artwork-img"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 06 / EPILOGUE -->
+    <section id="about" style="border-bottom: none; padding-bottom: 120px;">
+        <div class="container-custom">
+            <span class="section-label font-serif">05 / Epilogue 大一学年艺术学习与生活感想</span>
+            <div class="epilogue-statement font-serif">
+                “从最初对软件工具的陌生，到逐渐尝试通过数媒媒介让传统的、感性的手作拼贴产生数字互动……<br>
+                大一这整整一年，不只是专业技能的下沉积累，更是我作为创作者，主观生态意识的觉醒与一次野蛮生长的艺术留存。”
+            </div>
+            <div class="font-sans-clean" style="font-size: 13px; color: #C2DEC9; letter-spacing: 0.2em; text-align: center; margin-top: 80px;">
+                © 2026 FENG CHU // ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 1. 双击全屏放大灯箱逻辑（移动端单指快速双击同样触发）
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const zoomableImages = document.querySelectorAll('.artwork-img');
+
+        zoomableImages.forEach(img => {
+            img.addEventListener('dblclick', (e) => {
+                e.stopPropagation();
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+        lightbox.addEventListener('dblclick', () => {
+            lightbox.classList.remove('active');
+        });
+
+        // 2. 多图卡片无缝互动叠放（切牌动效，兼容手机端轻触）
+        const stackContainers = document.querySelectorAll('.multi-stack-container');
+
+        stackContainers.forEach(container => {
+            let photos = Array.from(container.querySelectorAll('.stack-photo'));
+            if (photos.length === 0) return;
+
+            // 为容器内每张图绑定点击/轻触切换事件
+            photos.forEach(photo => {
+                photo.addEventListener('click', function(e) {
+                    // 如果用户是双击想放大，不触发切牌
+                    if (e.detail > 1) return; 
+
+                    let currentIndex = parseInt(this.getAttribute('data-index'));
+                    // 只有最上层的卡片（data-index 为 0）才可以被切走
+                    if (currentIndex !== 0) return;
+
+                    e.stopPropagation();
+
+                    // 最上层卡片滑出
+                    this.classList.add('slide-out');
+
+                    // 重新排列剩下卡片的层级
+                    setTimeout(() => {
+                        this.classList.remove('slide-out');
+                        
+                        // 把切走的那张放到最后，更新所有卡片的 index
+                        photos.forEach(p => {
+                            let idx = parseInt(p.getAttribute('data-index'));
+                            if (idx === 0) {
+                                p.setAttribute('data-index', photos.length - 1);
+                            } else {
+                                p.setAttribute('data-index', idx - 1);
+                            }
+                        });
+                    }, 400);
+                });
+            });
+        });
+
+        // 3. 电脑端自定义绿色圆圈鼠标跟随轨迹（手机端自动优雅失效）
+        const dot = document.getElementById('cursorDot');
+        const follower = document.getElementById('cursorFollower');
+
+        if (window.innerWidth > 768) {
+            window.addEventListener('mousemove', (e) => {
+                dot.style.left = e.clientX + 'px';
+                dot.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    follower.style.left = e.clientX + 'px';
+                    follower.style.top = e.clientY + 'px';
+                }, 40);
+            });
+        }
+
+        // 4. 背景拼贴贴纸视觉差滚动（手机端同样平滑支持）
+        window.addEventListener('scroll', () => {
+            const stickers = document.querySelectorAll('.interactive-sticker');
+            let scrolled = window.pageYOffset;
+            
+            stickers.forEach(sticker => {
+                let speed = parseFloat(sticker.getAttribute('data-speed')) || 2;
+                sticker.style.transform = `translateY(${scrolled * speed * 0.05}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
